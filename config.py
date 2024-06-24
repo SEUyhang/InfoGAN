@@ -2,7 +2,7 @@
 params = {
     'batch_size': 128,# Batch size.
     'num_epochs': 100,# Number of epochs to train for.
-    'D_learning_rate': 2e-6,# Learning rate.
+    'D_learning_rate': 2e-4,# Learning rate.
     'G_learning_rate': 2e-4,# Learning rate.
     'beta1': 0.5,
     'beta2': 0.999,

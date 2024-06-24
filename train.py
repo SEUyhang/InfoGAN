@@ -49,9 +49,9 @@ if(params['dataset'] == 'MNIST'):
     params['num_con_c'] = 2
 elif(params['dataset'] == 'TEXBAT'):
     params['num_z'] = 256
-    params['num_dis_c'] = 0
-    params['dis_c_dim'] = 0
-    params['num_con_c'] = 8
+    params['num_dis_c'] = 1
+    params['dis_c_dim'] = 3
+    params['num_con_c'] = 0
 elif(params['dataset'] == 'CelebA'):
     params['num_z'] = 128
     params['num_dis_c'] = 10
@@ -236,7 +236,7 @@ for epoch in range(params['num_epochs']):
             'optimD' : optimD.state_dict(),
             'optimG' : optimG.state_dict(),
             'params' : params
-            }, 'checkpoint/ds3/demo2e6/model_epoch_%d_{}_learningrate_%d'.format(params['dataset']) %(epoch+1, params['D_learning_rate']))
+            }, '/home/yhang/GAN/InfoGAN-PyTorch/checkpoint/infoGan_TEXBAT/model_epoch_%d_{}_learningrate_%d'.format(params['dataset']) %(epoch+1, params['D_learning_rate']))
 
 training_time = time.time() - start_time
 print("-"*50)
@@ -252,15 +252,15 @@ print("-"*50)
 # plt.savefig("Epoch_%d_{}".format(params['dataset']) %(params['num_epochs']))
 
 # Save network weights.
-torch.save({
-    'netG' : netG.state_dict(),
-    'discriminator' : discriminator.state_dict(),
-    'netD' : netD.state_dict(),
-    'netQ' : netQ.state_dict(),
-    'optimD' : optimD.state_dict(),
-    'optimG' : optimG.state_dict(),
-    'params' : params
-    }, 'checkpoint/ds3/demo2e6/model_final_{}_learningrate_%d'.format(params['dataset'], params['D_learning_rate']))
+# torch.save({
+#     'netG' : netG.state_dict(),
+#     'discriminator' : discriminator.state_dict(),
+#     'netD' : netD.state_dict(),
+#     'netQ' : netQ.state_dict(),
+#     'optimD' : optimD.state_dict(),
+#     'optimG' : optimG.state_dict(),
+#     'params' : params
+#     }, 'checkpoint/ds3/demo2e6/model_final_{}_learningrate_%d'.format(params['dataset'], params['D_learning_rate']))
 
 np.savetxt('./plotData/Discriminator/seed2048.txt', D_losses)
 np.savetxt('./plotData/Generator/seed2048.txt', G_losses)

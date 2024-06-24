@@ -8,7 +8,6 @@ import torchvision.datasets as dsets
 root = 'data/'
 train_root = "/new_data/yhang/GNSS/TEXBAT/train/"
 test_root = "/new_data/yhang/GNSS/TEXBAT/test/"
-data_id = "3"
 
 def normalize_features(data):
     # 计算每个特征的平均值和标准差
@@ -38,8 +37,8 @@ def get_data(dataset, batch_size, mode):
 
     # Get TEXBAT dataset.
     elif dataset == 'TEXBAT' and mode == 'train':
-        data_train = np.load(train_root + "/ds" + data_id + "/data.npy")
-        labels_train = np.load(train_root + "/ds" + data_id + "/label.npy")   
+        data_train = np.load("/new_data/yhang/GNSS/TEXBAT/train/ds34/data.npy")
+        labels_train = np.load("/new_data/yhang/GNSS/TEXBAT/train/ds34/label.npy") 
         # 将numpy数组转换为torch张量
         data_torch = torch.from_numpy(data_train).float()
         data_torch = normalize_features(data_torch)
@@ -49,8 +48,8 @@ def get_data(dataset, batch_size, mode):
         dataset = TensorDataset(data_torch, labels_torch)
 
     elif dataset == 'TEXBAT' and mode == 'test':
-        data_test = np.load(test_root + "/ds" + data_id + "/data.npy")
-        labels_test = np.load(test_root + "/ds" + data_id + "/label.npy")   
+        data_test = np.load("/new_data/yhang/GNSS/TEXBAT/test/ds34/data.npy")
+        labels_test = np.load("/new_data/yhang/GNSS/TEXBAT/test/ds34/label.npy")   
         # 将numpy数组转换为torch张量
         data_torch = torch.from_numpy(data_test).float()
         data_torch = normalize_features(data_torch)
